@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">Images List</string>
+    <string name="menu_refresh">menu refresh</string>
 </resources>

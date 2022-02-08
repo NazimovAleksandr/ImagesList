@@ -1,6 +1,8 @@
 package com.nazimovaleksandr.imageslist.data.api
 
 import android.util.Log
+import com.nazimovaleksandr.imageslist.constants.HTTP
+import com.nazimovaleksandr.imageslist.constants.HTTPS
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -31,10 +33,12 @@ class Api(url: String) : Callback<List<String>> {
         Log.e("retrofit", "onResponse: $response")
 
         response.body()?.let {
-            callback(it)
+            callback(it.map { path ->
+                path.replace(HTTP, HTTPS)
+            })
 
             it.forEach { url ->
-                Log.i("retrofit", "body: $url")
+                Log.i("retrofit2", "body: $url")
             }
         }
     }
@@ -42,6 +46,6 @@ class Api(url: String) : Callback<List<String>> {
     override fun onFailure(call: Call<List<String>>, t: Throwable) {
         Log.e("retrofit", "onFailure: ${t.message}")
 
-        callback(listOf("onFailure"))
+        callback(emptyList())
     }
 }

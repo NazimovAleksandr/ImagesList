@@ -7,18 +7,20 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import com.nazimovaleksandr.imageslist.R
 import com.nazimovaleksandr.imageslist.databinding.FragmentImagesListBinding
 import com.nazimovaleksandr.imageslist.presentation.constants.BUNDLE_KEY_IMAGE_PATH
 import com.nazimovaleksandr.imageslist.presentation.screens.images_list.rv.ImagesAdapter
-import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class ImagesListFragment : Fragment() {
     private var _binding: FragmentImagesListBinding? = null
     private val binding get() = _binding!!
 
-    private val viewModel: ImagesViewModel by viewModel()
+    private val viewModel: ImagesViewModel by viewModels {
+        ImagesViewModelFactory()
+    }
 
     private var adapter: ImagesAdapter? = null
 

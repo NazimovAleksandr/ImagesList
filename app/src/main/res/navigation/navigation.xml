@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/imagesListFragment"
-        android:name="com.nazimovaleksandr.imageslist.presentation.images_list.ImagesListFragment"
+        android:name="com.nazimovaleksandr.imageslist.presentation.screens.images_list.ImagesListFragment"
         android:label="fragment_images_list"
         tools:layout="@layout/fragment_images_list" >
         <action
@@ -16,7 +16,7 @@
     </fragment>
     <dialog
         android:id="@+id/imageFragment"
-        android:name="com.nazimovaleksandr.imageslist.presentation.image.ImageFragment"
+        android:name="com.nazimovaleksandr.imageslist.presentation.screens.image.ImageFragment"
         android:label="fragment_image"
         tools:layout="@layout/fragment_image" />
 </navigation>

@@ -9,11 +9,11 @@ import dagger.Component
 interface AppComponent {
     fun injectFragmentImagesList(fragment: ImagesListFragment)
 
-    @Component.Builder
-    interface AppComponentBuilder {
-        @BindsInstance
-        fun context(context: Context): AppComponentBuilder
-
-        fun build(): AppComponent
+    @Component.Factory
+    interface AppComponentFactory {
+        fun create(
+            @BindsInstance
+            context: Context
+        ): AppComponent
     }
 }

@@ -6,7 +6,6 @@ import com.nazimovaleksandr.imageslist.di.DaggerAppComponent
 
 class App : Application() {
     val appComponent: AppComponent =  DaggerAppComponent
-        .builder()
-        .context(this)
-        .build()
+        .factory()
+        .create(this)
 }

@@ -11,18 +11,28 @@ import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import com.nazimovaleksandr.imageslist.R
 import com.nazimovaleksandr.imageslist.databinding.FragmentImagesListBinding
+import com.nazimovaleksandr.imageslist.presentation.app.App
 import com.nazimovaleksandr.imageslist.presentation.constants.BUNDLE_KEY_IMAGE_PATH
 import com.nazimovaleksandr.imageslist.presentation.screens.images_list.rv.ImagesAdapter
+import javax.inject.Inject
 
 class ImagesListFragment : Fragment() {
     private var _binding: FragmentImagesListBinding? = null
     private val binding get() = _binding!!
 
+    @Inject
+    lateinit var viewModelFactory: ImagesViewModelFactory
+
     private val viewModel: ImagesViewModel by viewModels {
-        ImagesViewModelFactory()
+        viewModelFactory
     }
 
     private var adapter: ImagesAdapter? = null
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        (requireActivity().applicationContext as App).appComponent.injectFragmentImagesList(this)
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,

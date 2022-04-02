@@ -14,6 +14,7 @@ import com.nazimovaleksandr.imageslist.databinding.FragmentImagesListBinding
 import com.nazimovaleksandr.imageslist.presentation.app.App
 import com.nazimovaleksandr.imageslist.presentation.constants.BUNDLE_KEY_IMAGE_PATH
 import com.nazimovaleksandr.imageslist.presentation.screens.images_list.rv.ImagesAdapter
+import com.nazimovaleksandr.imageslist.presentation.screens.view_model_factory.ViewModelFactory
 import javax.inject.Inject
 
 class ImagesListFragment : Fragment() {
@@ -21,11 +22,9 @@ class ImagesListFragment : Fragment() {
     private val binding get() = _binding!!
 
     @Inject
-    lateinit var viewModelFactory: ImagesViewModelFactory
+    lateinit var viewModelFactory: ViewModelFactory
 
-    private val viewModel: ImagesViewModel by viewModels {
-        viewModelFactory
-    }
+    private val viewModel: ImagesViewModel by viewModels { viewModelFactory }
 
     private var adapter: ImagesAdapter? = null
 

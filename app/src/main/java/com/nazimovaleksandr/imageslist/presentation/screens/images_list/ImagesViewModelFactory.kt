@@ -24,6 +24,6 @@ class ImagesViewModelFactory @Inject constructor(
 
     @Inject
     fun viewModelFactoryCreated(context: Context) {
-        Toast.makeText(context, "viewModelFactoryCreated", Toast.LENGTH_SHORT).show()
+        Toast.makeText(context, "ViewModelFactory Created", Toast.LENGTH_SHORT).show()
     }
 }

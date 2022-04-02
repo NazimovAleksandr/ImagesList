@@ -3,9 +3,8 @@ package com.nazimovaleksandr.imageslist.presentation.screens.images_list.rv
 import android.view.View
 import android.widget.ImageView
 import androidx.recyclerview.widget.RecyclerView
-import com.bumptech.glide.Glide
+import coil.load
 import com.nazimovaleksandr.imageslist.R
-
 
 class ImagesHolder(
     itemView: View,
@@ -13,9 +12,12 @@ class ImagesHolder(
 ) : RecyclerView.ViewHolder(itemView) {
 
     fun bind(path: String) {
-        val imageview = itemView.findViewById<ImageView>(R.id.image)
+        val imageView = itemView.findViewById<ImageView>(R.id.image)
 
-        Glide.with(itemView).load(path).into(imageview)
+        imageView.load(path) {
+            placeholder(R.drawable.ic_launcher_foreground)
+            error(R.drawable.ic_launcher_foreground)
+        }
 
         itemView.setOnClickListener {
             imageOnClick(path)

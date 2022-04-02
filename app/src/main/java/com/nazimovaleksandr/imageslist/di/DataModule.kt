@@ -14,21 +14,19 @@ class DataModule {
 
     @Prod
     @Provides
-//    @Singleton
     fun provideApiProd(): Api {
         return Api(baseUrlProd)
     }
 
     @Dev
     @Provides
-//    @Singleton
     fun provideApiDev(): Api {
         return Api(baseUrlDev)
     }
 
     @Prod
+    @AppScope
     @Provides
-//    @Singleton
     fun provideDataManagerProd(
         @Prod
         api: Api
@@ -37,8 +35,8 @@ class DataModule {
     }
 
     @Dev
+    @AppScope
     @Provides
-//    @Singleton
     fun provideDataManagerDev(
         @Dev
         api: Api

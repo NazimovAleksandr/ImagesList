@@ -7,7 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import androidx.fragment.app.DialogFragment
-import com.bumptech.glide.Glide
+import coil.load
 import com.nazimovaleksandr.imageslist.R
 import com.nazimovaleksandr.imageslist.presentation.constants.BUNDLE_KEY_IMAGE_PATH
 
@@ -36,8 +36,9 @@ class ImageFragment : DialogFragment() {
         Log.e("imageFragment", "imagePath: $imagePath")
         Log.e("imageFragment", "imageView: $imageView")
 
-        Glide.with(requireContext())
-            .load(imagePath)
-            .into(imageView)
+        imageView.load(imagePath) {
+            placeholder(R.drawable.ic_launcher_foreground)
+            error(R.drawable.ic_launcher_foreground)
+        }
     }
 }

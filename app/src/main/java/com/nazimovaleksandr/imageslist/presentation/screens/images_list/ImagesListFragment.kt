@@ -2,37 +2,23 @@ package com.nazimovaleksandr.imageslist.presentation.screens.images_list
 
 import android.os.Bundle
 import android.util.Log
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
 import android.widget.Toast
-import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import com.nazimovaleksandr.imageslist.R
 import com.nazimovaleksandr.imageslist.databinding.FragmentImagesListBinding
 import com.nazimovaleksandr.imageslist.presentation.constants.BUNDLE_KEY_IMAGE_PATH
+import com.nazimovaleksandr.imageslist.presentation.screens.factory.BindingFactory
 import com.nazimovaleksandr.imageslist.presentation.screens.images_list.rv.ImagesAdapter
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
-class ImagesListFragment : Fragment() {
-    private var _binding: FragmentImagesListBinding? = null
-    private val binding get() = _binding!!
-
+class ImagesListFragment : BindingFactory<FragmentImagesListBinding>(
+    FragmentImagesListBinding::inflate
+) {
     private val viewModel: ImagesViewModel by viewModel()
 
     private var adapter: ImagesAdapter? = null
 
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View {
-        _binding = FragmentImagesListBinding.inflate(inflater, container, false)
-        return binding.root
-    }
-
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-
+    override fun viewBindingCreated(savedInstanceState: Bundle?) {
         initViewModel()
         initListeners()
     }
@@ -41,12 +27,6 @@ class ImagesListFragment : Fragment() {
         super.onResume()
 
         binding.rvImagesList.adapter = adapter
-    }
-
-    override fun onDestroyView() {
-        super.onDestroyView()
-
-        _binding = null
     }
 
     private fun initViewModel() {

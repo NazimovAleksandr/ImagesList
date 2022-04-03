@@ -1,43 +1,33 @@
 package com.nazimovaleksandr.imageslist.presentation.screens.image
 
 import android.os.Bundle
-import android.util.Log
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
-import android.widget.ImageView
-import androidx.fragment.app.DialogFragment
-import com.bumptech.glide.Glide
+import coil.load
 import com.nazimovaleksandr.imageslist.R
+import com.nazimovaleksandr.imageslist.databinding.FragmentImageBinding
 import com.nazimovaleksandr.imageslist.presentation.constants.BUNDLE_KEY_IMAGE_PATH
+import com.nazimovaleksandr.imageslist.presentation.screens.factory.BindingFactory
 
-class ImageFragment : DialogFragment() {
+class ImageFragment : BindingFactory<FragmentImageBinding>(
+    FragmentImageBinding::inflate
+) {
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-
-        setStyle(STYLE_NO_TITLE, androidx.appcompat.R.style.Base_Theme_AppCompat_Dialog)
+    override fun viewBindingCreated(savedInstanceState: Bundle?) {
+        initView()
+        initListeners()
     }
 
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_image, container, false)
-    }
-
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-
-        val imageView = view.findViewById<ImageView>(R.id.image)
+    private fun initView() {
         val imagePath = arguments?.getString(BUNDLE_KEY_IMAGE_PATH)
 
-        Log.e("imageFragment", "imagePath: $imagePath")
-        Log.e("imageFragment", "imageView: $imageView")
+        binding.image.load(imagePath) {
+            placeholder(R.drawable.ic_launcher_foreground)
+            error(R.drawable.ic_launcher_foreground)
+        }
+    }
 
-        Glide.with(requireContext())
-            .load(imagePath)
-            .into(imageView)
+    private fun initListeners() {
+        binding.root.setOnClickListener {
+            requireActivity().onBackPressed()
+        }
     }
 }

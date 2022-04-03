@@ -1,21 +1,22 @@
 package com.nazimovaleksandr.imageslist.presentation.screens.images_list.rv
 
-import android.view.View
-import android.widget.ImageView
 import androidx.recyclerview.widget.RecyclerView
-import com.bumptech.glide.Glide
+import coil.load
+import coil.transform.CircleCropTransformation
 import com.nazimovaleksandr.imageslist.R
-
+import com.nazimovaleksandr.imageslist.databinding.RvImageItemBinding
 
 class ImagesHolder(
-    itemView: View,
+    private val binding: RvImageItemBinding,
     private val imageOnClick: (String) -> Unit
-) : RecyclerView.ViewHolder(itemView) {
+) : RecyclerView.ViewHolder(binding.root) {
 
     fun bind(path: String) {
-        val imageview = itemView.findViewById<ImageView>(R.id.image)
-
-        Glide.with(itemView).load(path).into(imageview)
+        binding.image.load(path) {
+            placeholder(R.drawable.ic_launcher_foreground)
+            error(R.drawable.ic_launcher_foreground)
+            transformations(CircleCropTransformation())
+        }
 
         itemView.setOnClickListener {
             imageOnClick(path)

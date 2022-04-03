@@ -4,7 +4,7 @@ import android.annotation.SuppressLint
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.nazimovaleksandr.imageslist.R
+import com.nazimovaleksandr.imageslist.databinding.RvImageItemBinding
 
 class ImagesAdapter(
     private var imageList: List<String>,
@@ -12,9 +12,9 @@ class ImagesAdapter(
 ) : RecyclerView.Adapter<ImagesHolder>() {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ImagesHolder {
         val inflater = LayoutInflater.from(parent.context)
-        val view = inflater.inflate(R.layout.rv_image_item, parent, false)
+        val binding = RvImageItemBinding.inflate(inflater, parent, false)
 
-        return ImagesHolder(view, imageOnClick)
+        return ImagesHolder(binding, imageOnClick)
     }
 
     override fun onBindViewHolder(holder: ImagesHolder, position: Int) {

@@ -11,7 +11,6 @@
         android:layout_height="0dp"
         android:layout_margin="20dp"
         android:adjustViewBounds="true"
-        android:background="@color/purple_200"
         android:scaleType="centerCrop"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintDimensionRatio="1:1"

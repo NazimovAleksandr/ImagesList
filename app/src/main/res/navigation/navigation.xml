@@ -14,7 +14,7 @@
             android:id="@+id/action_imagesListFragment_to_imageFragment"
             app:destination="@id/imageFragment" />
     </fragment>
-    <dialog
+    <fragment
         android:id="@+id/imageFragment"
         android:name="com.nazimovaleksandr.imageslist.presentation.screens.image.ImageFragment"
         android:label="fragment_image"

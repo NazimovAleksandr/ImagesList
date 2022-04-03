@@ -1,6 +1,8 @@
 package com.nazimovaleksandr.imageslist.di
 
 import android.content.Context
+import androidx.fragment.app.Fragment
+import com.nazimovaleksandr.imageslist.presentation.screens.image.ImageFragment
 import com.nazimovaleksandr.imageslist.presentation.screens.images_list.ImagesListFragment
 import dagger.BindsInstance
 import dagger.Component
@@ -8,7 +10,7 @@ import dagger.Component
 @AppScope
 @Component(modules = [DomainModule::class, DataModule::class, ViewModelModule::class])
 interface AppComponent {
-    fun injectFragmentImagesList(fragment: ImagesListFragment)
+    fun inject(fragment: ImagesListFragment)
 
     @Component.Factory
     interface AppComponentFactory {

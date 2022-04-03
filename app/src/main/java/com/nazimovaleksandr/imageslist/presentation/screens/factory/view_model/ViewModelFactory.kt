@@ -1,4 +1,4 @@
-package com.nazimovaleksandr.imageslist.presentation.screens.view_model_factory
+package com.nazimovaleksandr.imageslist.presentation.screens.factory.view_model
 
 import android.content.Context
 import android.widget.Toast
@@ -9,7 +9,7 @@ import javax.inject.Inject
 import javax.inject.Provider
 
 class ViewModelFactory @Inject constructor(
-    private val viewModelProviders: @JvmSuppressWildcards Map<Class<out ViewModel>, Provider<ViewModel>>
+    private val viewModelProviders: Map<Class<out ViewModel>, @JvmSuppressWildcards Provider<ViewModel>>
 ) : ViewModelProvider.Factory {
 
     override fun <T : ViewModel?> create(modelClass: Class<T>): T {
